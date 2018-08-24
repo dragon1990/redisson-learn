@@ -1,4 +1,4 @@
-package com.dragon.learn.redisson;
+package com.dragon.learn.redisson.deploy;
 
 
 import org.redisson.Redisson;

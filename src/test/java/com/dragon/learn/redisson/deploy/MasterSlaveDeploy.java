@@ -1,4 +1,4 @@
-package com.dragon.learn.redisson;
+package com.dragon.learn.redisson.deploy;
 
 import org.redisson.Redisson;
 import org.redisson.api.RedissonClient;
@@ -14,10 +14,12 @@ public class MasterSlaveDeploy {
                 //设置redis主节点
                 .setMasterAddress("redis://127.0.0.1:6379")
                 //设置redis从节点
-                .addSlaveAddress("redis://127.0.0.1:6380", "redis://127.0.0.1:6381");
+                .addSlaveAddress("redis://127.0.0.1:7000", "redis://127.0.0.1:7001").setDatabase(0);
 
         //创建客户端(发现创建RedissonClient非常耗时，基本在2秒-4秒左右)
         RedissonClient redisson = Redisson.create(config);
+
+        redisson.getLock("mylock");
 
         //最后关闭RedissonClient
         redisson.shutdown();
